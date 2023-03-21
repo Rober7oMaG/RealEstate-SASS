@@ -7,6 +7,12 @@
     }
 }
 
+@mixin phoneXL {
+    @media (min-width: v.$phoneXL) {
+        @content;
+    }
+}
+
 @mixin tablet {
     @media (min-width: v.$tablet) {
         @content;
@@ -53,4 +59,25 @@
     display: grid;
     gap: $gap;
     grid-template-columns: repeat($columns, 1fr);
+}
+
+@mixin heading($lineBreak: false) {
+    font-weight: 400;
+
+    span {
+        font-weight: 700;
+
+        @if ($lineBreak) {
+            display: block;
+        }
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        height: 1rem;
+        width: 15rem;
+        margin-top: 1rem;
+        background-image: linear-gradient(to right, v.$primary 0%, v.$primary 50%, lighten(v.$primary, 20%) 50%, lighten(v.$primary, 20%) 100%);
+    }
 }
